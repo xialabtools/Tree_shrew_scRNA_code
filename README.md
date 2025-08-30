@@ -4,6 +4,8 @@ Data Analysis Process of "Tree shrew immune cell atlas identifies NR1H3⁺ tissu
 Raw sequencing data is available at SRA databank under the accession number PRJNA784168.
 
 My environment: (not all are neccessary)
+
+```txt
 R version 4.4.1 (2024-06-14)
 Platform: x86_64-pc-linux-gnu
 Running under: Ubuntu 18.04.4 LTS
@@ -52,4 +54,5 @@ loaded via a namespace (and not attached):
 [101] png_0.1-8              spatstat.univar_3.0-0  parallel_4.4.1         dotCall64_1.1-1        listenv_0.9.1         
 [106] viridisLite_0.4.2      mvtnorm_1.1-2          scales_1.3.0           ggridges_0.5.6         leiden_0.4.3.1        
 [111] tmvnsim_1.0-2          rlang_1.1.4            multcomp_1.4-17        mnormt_2.0.2          
-> 
+```
+
