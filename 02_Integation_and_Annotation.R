@@ -53,7 +53,7 @@ integrated <- ScaleData(integrated, verbose = FALSE)
 integrated <- RunPCA(integrated, npcs = 50, verbose = FALSE)
 integrated <- RunUMAP(integrated, reduction = "pca", dims = 1:50)
 integrated <- FindNeighbors(integrated, reduction = "pca", dims = 1:50)
-integrated <- FindClusters(integrated, resolution = 1.6)
+integrated <- FindClusters(integrated, resolution = 1.2)
 
 ggsave("results/integration/UMAP_clusters.pdf",
        DimPlot(integrated, reduction = "umap", label = TRUE, repel = TRUE) + NoLegend(),
@@ -251,3 +251,4 @@ pheatmap(avg_mat,
          width = 9, height = 12)
 
 saveRDS(integrated, "results/integration/integrated_seurat.rds")
+
