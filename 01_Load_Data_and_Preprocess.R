@@ -165,3 +165,62 @@ process_one <- function(id, info_tbl) {
   nf <- attr(o2, "nfeature_cut")
   saveRDS(o3, file.path(cfg$obj_dir, paste0(id, ".qc.rds")))
   }
+
+## Batch processing
+if (sys.nframe() == 0) {
+  dir.create(cfg$out_dir,  recursive = TRUE, showWarnings = FALSE)
+  dir.create(cfg$obj_dir,  recursive = TRUE, showWarnings = FALSE)
+
+  if (!exists("process_one")) {
+    stop("process_one() must be defined above before batch processing.")
+  }
+
+  .msg <- function(...) cat(format(Sys.time(), "%H:%M:%S"), ..., "\n")
+
+  infer_input_dir <- function(sample_id) {
+    cand <- c(
+      file.path(cfg$data_dir, sample_id, paste0(sample_id, cfg$suffix)),
+      file.path(cfg$data_dir, sample_id, "outs", "filtered_feature_bc_matrix"),
+      file.path(cfg$data_dir, sample_id)
+    )
+    cand <- cand[dir.exists(cand)]
+    if (length(cand) == 0) NA_character_ else cand[[1]]
+  }
+
+  fml <- names(formals(process_one))
+
+  .msg("Found ", length(samples), " sample(s): ", paste(samples, collapse = ", "))
+
+  for (sid in samples) {
+    input_dir <- infer_input_dir(sid)
+    out_file  <- file.path(cfg$obj_dir, paste0(sid, ".qc.rds"))
+
+    if (file.exists(out_file)) { .msg("[Skip]", sid, "already has", out_file); next }
+
+    if (is.na(input_dir)) {
+      .msg("[Warn]", sid, ": input dir not found under ", cfg$data_dir, "; skip")
+      next
+    }
+
+    .msg("[Start]", sid, "->", input_dir)
+    t0 <- Sys.time()
+
+    args <- list()
+    if ("sample_id" %in% fml)      args$sample_id <- sid else if ("sid" %in% fml) args$sid <- sid
+    if ("input_dir" %in% fml)      args$input_dir <- input_dir
+    if ("cfg" %in% fml)            args$cfg       <- cfg
+
+    res <- try(do.call(process_one, args), silent = TRUE)
+    if (inherits(res, "try-error")) {
+      .msg("[Error]", sid, ":", conditionMessage(attr(res, "condition"))); next
+    }
+
+    if (!file.exists(out_file) && !is.null(res)) {
+      try(saveRDS(res, out_file), silent = TRUE)
+    }
+
+    .msg("[Done]", sid, " (",
+         round(as.numeric(difftime(Sys.time(), t0, units = "secs")), 1),
+         " sec ) -> ", out_file)
+  }
+}
