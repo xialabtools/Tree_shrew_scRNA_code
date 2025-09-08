@@ -3,7 +3,8 @@ Data Analysis Process of "Tree shrew immune cell atlas identifies NR1H3⁺ tissu
 
 Raw sequencing data is available at SRA databank under the accession number PRJNA784168.
 
-T. belangeri Cell Atlas website https://stmm-lab.shinyapps.io/tbca/  offering interactive search feature based on tissue, cell type and gene through ShinyCell tool(PMID: 33774659).
+An interactive ShinyCell‑based (PMID: 33774659) browser for the Tupaia belangeri Cell Atlas is available at stmm-lab.shinyapps.io/tbca
+, enabling searches across tissues, cell types, and genes.
 
 My environment: (not all are neccessary)
 
