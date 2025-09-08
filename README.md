@@ -5,6 +5,7 @@ Raw sequencing data is available at SRA databank under the accession number PRJN
 
 An interactive browser for the Tree Shrw Cell Atlas is available at https://stmm-lab.shinyapps.io/tbca/. 
 Built with ShinyCell (PMID: 33774659), it lets you search and explore data by tissue, cell type, or gene.
+![Overview of sample processing and scRNA‑seq workflow](images/scRNA_workflow.jpg)
 
 My environment: (not all are neccessary)
 
