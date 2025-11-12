@@ -3,7 +3,7 @@ Data Analysis Process of "Tree shrew immune cell atlas identifies NR1H3⁺ tissu
 
 Raw sequencing data is available at SRA databank under the accession number PRJNA784168.
 
-An interactive browser for the Tree Shrw Cell Atlas is available at https://stmm-lab.shinyapps.io/tbca/. 
+An interactive browser for the Tree Shrew Cell Atlas is available at https://stmm-lab.shinyapps.io/tbca/. 
 Built with ShinyCell (PMID: 33774659), it lets you search and explore data by tissue, cell type, or gene.
 ![Overview of sample processing and scRNA‑seq workflow](./scRNA_workflow.jpg)
 
