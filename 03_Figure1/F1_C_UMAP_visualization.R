@@ -250,4 +250,3 @@ pheatmap(avg_mat,
          width = 9, height = 12)
                       
 saveRDS(integrated, "results/integration/integrated_seurat.rds")
-
