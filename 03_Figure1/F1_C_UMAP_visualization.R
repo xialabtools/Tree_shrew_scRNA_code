@@ -248,6 +248,6 @@ pheatmap(avg_mat,
          annotation_col = ann_col, annotation_colors = list(Major = pal_major),
          filename = "results/integration/marker_heatmap_topN.pdf",
          width = 9, height = 12)
-
-
+                      
 saveRDS(integrated, "results/integration/integrated_seurat.rds")
+
