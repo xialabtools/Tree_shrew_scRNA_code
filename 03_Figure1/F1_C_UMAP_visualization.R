@@ -119,7 +119,6 @@ suggested <- left_join(ct_major, markers_per_cluster, by = "cluster")
 write.csv(suggested, "results/annotation/suggested_labels.csv", row.names = FALSE)
 
 ## --- 4) Finalize fine/major labels ---
-## 读取可选人工修订文件 results/annotation/manual_override.csv（两列：cluster,final_fine）
 final_map <- suggested |> transmute(cluster, final_fine = ct_majority)
 if (file.exists("results/annotation/manual_override.csv")) {
   over <- suppressMessages(read_csv("results/annotation/manual_override.csv", show_col_types = FALSE))
@@ -249,5 +248,6 @@ pheatmap(avg_mat,
          annotation_col = ann_col, annotation_colors = list(Major = pal_major),
          filename = "results/integration/marker_heatmap_topN.pdf",
          width = 9, height = 12)
+
 
 saveRDS(integrated, "results/integration/integrated_seurat.rds")
